@@ -1,67 +1,118 @@
 /* =========================================
    VELOUR Studio — app.js
-   Salón de Belleza & Bienestar · Bogotá
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ══════════════════════════════════════
-     1. LOADER
+     1. LOADER ANIMADO
+     - Partículas flotantes
+     - Contador de porcentaje animado
+     - Barra de progreso fluida
+     - Sale suavemente al terminar
   ══════════════════════════════════════ */
-  const loader = document.getElementById('loader');
+  const loader    = document.getElementById('loader');
+  const loaderPct = document.getElementById('loaderPct');
+  const loaderParticles = document.getElementById('loaderParticles');
+
+  // Crear anillos decorativos
+  if (loader) {
+    const ring1 = document.createElement('div');
+    ring1.className = 'loader-ring';
+    const ring2 = document.createElement('div');
+    ring2.className = 'loader-ring-2';
+    loader.insertBefore(ring1, loader.firstChild);
+    loader.insertBefore(ring2, loader.firstChild);
+  }
+
+  // Generar partículas animadas
+  if (loaderParticles) {
+    const colors = ['gold','gold','rose','rose','gold'];
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = `lp ${colors[i % colors.length]}`;
+      const size = Math.random() * 10 + 4;
+      p.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        animation-duration: ${Math.random() * 4 + 3}s;
+        animation-delay: ${Math.random() * 2}s;
+        opacity: ${Math.random() * 0.5 + 0.2};
+      `;
+      loaderParticles.appendChild(p);
+    }
+  }
+
+  // Contador de porcentaje animado
+  let pct = 0;
+  const pctInterval = setInterval(() => {
+    // Avanza rápido al principio, lento al final
+    const increment = pct < 70 ? Math.random() * 8 + 2 : Math.random() * 3 + 1;
+    pct = Math.min(pct + increment, 98);
+    if (loaderPct) loaderPct.textContent = Math.floor(pct) + '%';
+  }, 60);
 
   function hideLoader() {
     if (!loader) return;
-    loader.classList.add('out');
+    clearInterval(pctInterval);
+    if (loaderPct) loaderPct.textContent = '100%';
+
+    // Pequeña pausa antes de salir
     setTimeout(() => {
-      loader.style.display = 'none';
-    }, 800);
+      loader.classList.add('out');
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 750);
+    }, 300);
   }
 
-  // Ocultar cuando la página esté lista
-  if (document.readyState === 'complete') {
-    setTimeout(hideLoader, 1800);
-  } else {
-    window.addEventListener('load', () => setTimeout(hideLoader, 1800));
-    // Fallback: ocultar sí o sí después de 3.5s
-    setTimeout(hideLoader, 3500);
-  }
+  // Ocultar a los 2.2s máximo
+  const loaderTimer = setTimeout(hideLoader, 2200);
+
+  window.addEventListener('load', () => {
+    clearTimeout(loaderTimer);
+    setTimeout(hideLoader, 400);
+  });
 
   /* ══════════════════════════════════════
      2. CURSOR PERSONALIZADO
   ══════════════════════════════════════ */
-  const cur = document.getElementById('cursor');
+  const cur   = document.getElementById('cursor');
   const trail = document.getElementById('cursorTrail');
 
-  document.addEventListener('mousemove', e => {
-    cur.style.left = e.clientX + 'px';
-    cur.style.top  = e.clientY + 'px';
-    requestAnimationFrame(() => {
-      trail.style.left = e.clientX + 'px';
-      trail.style.top  = e.clientY + 'px';
+  if (cur && trail) {
+    document.addEventListener('mousemove', e => {
+      cur.style.left = e.clientX + 'px';
+      cur.style.top  = e.clientY + 'px';
+      requestAnimationFrame(() => {
+        trail.style.left = e.clientX + 'px';
+        trail.style.top  = e.clientY + 'px';
+      });
     });
-  });
 
-  const hoverEls = document.querySelectorAll('a, button, .gi, .gf, .stab, .btab, .add-cart, .wa-fab, .sc, .pc, .bc, .rit-card');
-  hoverEls.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cur.style.transform = 'translate(-50%,-50%) scale(2.2)';
-      trail.style.transform = 'translate(-50%,-50%) scale(1.6)';
-      trail.style.opacity = '.25';
+    const hoverEls = document.querySelectorAll('a, button, .gi, .gf, .stab, .btab, .add-cart, .wa-fab, .sc, .pc, .rit-card');
+    hoverEls.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cur.style.transform   = 'translate(-50%,-50%) scale(2.2)';
+        trail.style.transform = 'translate(-50%,-50%) scale(1.6)';
+        trail.style.opacity   = '.25';
+      });
+      el.addEventListener('mouseleave', () => {
+        cur.style.transform   = 'translate(-50%,-50%) scale(1)';
+        trail.style.transform = 'translate(-50%,-50%) scale(1)';
+        trail.style.opacity   = '.5';
+      });
     });
-    el.addEventListener('mouseleave', () => {
-      cur.style.transform = 'translate(-50%,-50%) scale(1)';
-      trail.style.transform = 'translate(-50%,-50%) scale(1)';
-      trail.style.opacity = '.5';
-    });
-  });
+  }
 
   /* ══════════════════════════════════════
      3. PROMO BAR CLOSE
   ══════════════════════════════════════ */
-  const promoBar  = document.getElementById('promoBar');
+  const promoBar   = document.getElementById('promoBar');
   const promoClose = document.getElementById('promoClose');
-  const header    = document.getElementById('header');
+  const header     = document.getElementById('header');
 
   promoClose?.addEventListener('click', () => {
     promoBar.classList.add('gone');
@@ -106,7 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(a.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+      window.scrollTo({
+        top: target.getBoundingClientRect().top + window.scrollY - 80,
+        behavior: 'smooth'
+      });
     });
   });
 
@@ -114,15 +168,15 @@ document.addEventListener('DOMContentLoaded', () => {
      7. SCROLL REVEAL
   ══════════════════════════════════════ */
   const revealEls = document.querySelectorAll(
-    '.sc, .pc, .eq-card, .bc, .rit-card, .ba-card, .sec-intro, .about-wrap, .res-wrap, .ci, .abst, .av'
+    '.sc, .pc, .bc, .rit-card, .sec-intro, .res-wrap, .ci, .abst, .av'
   );
   revealEls.forEach(el => el.classList.add('reveal'));
 
   const revObs = new IntersectionObserver((entries) => {
-    entries.forEach((en, i) => {
+    entries.forEach(en => {
       if (en.isIntersecting) {
         const sibs = [...en.target.parentElement.children];
-        const idx = sibs.indexOf(en.target);
+        const idx  = sibs.indexOf(en.target);
         setTimeout(() => en.target.classList.add('in'), idx * 90);
         revObs.unobserve(en.target);
       }
@@ -148,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function animCount(el, target) {
     const dur = 1600, start = performance.now();
     const tick = now => {
-      const p = Math.min((now - start) / dur, 1);
+      const p    = Math.min((now - start) / dur, 1);
       const ease = 1 - Math.pow(1 - p, 3);
       el.textContent = Math.floor(ease * target) + (target >= 50 ? '+' : '');
       if (p < 1) requestAnimationFrame(tick);
@@ -177,18 +231,18 @@ document.addEventListener('DOMContentLoaded', () => {
       stabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       const cat = tab.dataset.cat;
-      scCards.forEach((c, i) => {
-        const show = cat === 'all' || c.dataset.cat === cat;
-        c.classList.toggle('hidden', !show);
-        if (show) { c.style.animation = `none`; setTimeout(() => { c.style.animation = `fadeUp .4s ${i * 60}ms both`; }, 10); }
+      scCards.forEach(c => {
+        c.classList.toggle('hidden', cat !== 'all' && c.dataset.cat !== cat);
       });
+      // Reset scroll del carrusel al filtrar
+      document.getElementById('servGrid')?.scrollTo({ left: 0, behavior: 'smooth' });
     });
   });
 
   /* ══════════════════════════════════════
      11. FILTRO GALERÍA
   ══════════════════════════════════════ */
-  const gfBtns  = document.querySelectorAll('.gf');
+  const gfBtns   = document.querySelectorAll('.gf');
   const galItems = document.querySelectorAll('.gi');
 
   gfBtns.forEach(btn => {
@@ -197,22 +251,23 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active');
       const gc = btn.dataset.gc;
       galItems.forEach(gi => gi.classList.toggle('hidden', gc !== 'all' && gi.dataset.gc !== gc));
+      document.getElementById('galGrid')?.scrollTo({ left: 0, behavior: 'smooth' });
     });
   });
 
   /* ══════════════════════════════════════
      12. LIGHTBOX GALERÍA
   ══════════════════════════════════════ */
-  const lb     = document.getElementById('lb');
-  const lbBg   = document.getElementById('lbBg');
-  const lbImg  = document.getElementById('lbImg');
-  const lbCap  = document.getElementById('lbCap');
-  const lbNum  = document.getElementById('lbNum');
-  const lbPrev = document.getElementById('lbPrev');
-  const lbNext = document.getElementById('lbNext');
+  const lb      = document.getElementById('lb');
+  const lbBg    = document.getElementById('lbBg');
+  const lbImg   = document.getElementById('lbImg');
+  const lbCap   = document.getElementById('lbCap');
+  const lbNum   = document.getElementById('lbNum');
+  const lbPrev  = document.getElementById('lbPrev');
+  const lbNext  = document.getElementById('lbNext');
   const lbClose = document.getElementById('lbClose');
-  let lbIndex = 0;
-  const lbData = [];
+  let lbIndex   = 0;
+  const lbData  = [];
 
   galItems.forEach((gi, i) => {
     const img = gi.querySelector('img');
@@ -233,15 +288,15 @@ document.addEventListener('DOMContentLoaded', () => {
     lb.classList.remove('open');
     document.body.style.overflow = '';
   }
-  lbClose.addEventListener('click', closeLB);
-  lbBg.addEventListener('click', closeLB);
-  lbPrev.addEventListener('click', () => openLB((lbIndex - 1 + lbData.length) % lbData.length));
-  lbNext.addEventListener('click', () => openLB((lbIndex + 1) % lbData.length));
+  lbClose?.addEventListener('click', closeLB);
+  lbBg?.addEventListener('click', closeLB);
+  lbPrev?.addEventListener('click', () => openLB((lbIndex - 1 + lbData.length) % lbData.length));
+  lbNext?.addEventListener('click', () => openLB((lbIndex + 1) % lbData.length));
   document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
+    if (!lb?.classList.contains('open')) return;
     if (e.key === 'Escape') closeLB();
-    if (e.key === 'ArrowLeft') lbPrev.click();
-    if (e.key === 'ArrowRight') lbNext.click();
+    if (e.key === 'ArrowLeft') lbPrev?.click();
+    if (e.key === 'ArrowRight') lbNext?.click();
   });
 
   /* ══════════════════════════════════════
@@ -256,11 +311,12 @@ document.addEventListener('DOMContentLoaded', () => {
       tab.classList.add('active');
       const bc = tab.dataset.bc;
       pcCards.forEach(c => c.classList.toggle('hidden', bc !== 'all' && c.dataset.bc !== bc));
+      document.getElementById('prodGrid')?.scrollTo({ left: 0, behavior: 'smooth' });
     });
   });
 
   /* ══════════════════════════════════════
-     14. WISHLIST (corazones)
+     14. WISHLIST
   ══════════════════════════════════════ */
   document.querySelectorAll('.wl-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -275,17 +331,17 @@ document.addEventListener('DOMContentLoaded', () => {
      15. CARRITO DE COMPRAS
   ══════════════════════════════════════ */
   let cart = [];
-  const cartBtn  = document.getElementById('cartBtn');
-  const cartDot  = document.getElementById('cartDot');
-  const cdCount  = document.getElementById('cdCount');
-  const cdItems  = document.getElementById('cdItems');
-  const cdTotal  = document.getElementById('cdTotal');
-  const drawer   = document.getElementById('cartDrawer');
-  const cdOverlay= document.getElementById('cdOverlay');
-  const cdClose  = document.getElementById('cdClose');
-  const btnClear = document.getElementById('btnClear');
+  const cartBtn   = document.getElementById('cartBtn');
+  const cartDot   = document.getElementById('cartDot');
+  const cdCount   = document.getElementById('cdCount');
+  const cdItems   = document.getElementById('cdItems');
+  const cdTotal   = document.getElementById('cdTotal');
+  const drawer    = document.getElementById('cartDrawer');
+  const cdOverlay = document.getElementById('cdOverlay');
+  const cdClose   = document.getElementById('cdClose');
+  const btnClear  = document.getElementById('btnClear');
 
-  function openCart()  { drawer.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function openCart()  { drawer.classList.add('open');    document.body.style.overflow = 'hidden'; }
   function closeCart() { drawer.classList.remove('open'); document.body.style.overflow = ''; }
   cartBtn?.addEventListener('click', openCart);
   cdClose?.addEventListener('click', closeCart);
@@ -297,9 +353,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const name  = btn.dataset.name;
       const price = parseFloat(btn.dataset.price);
       const found = cart.find(i => i.name === name);
-      if (found) { found.qty++; } else { cart.push({ name, price, qty: 1 }); }
+      if (found) found.qty++;
+      else cart.push({ name, price, qty: 1 });
       renderCart();
-      showToast(`✓ ${name} agregado al carrito`);
+      showToast(`✓ ${name} agregado`);
       openCart();
     });
   });
@@ -307,9 +364,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderCart() {
     const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
     const count = cart.reduce((s, i) => s + i.qty, 0);
-    cartDot.textContent = count;
-    cdCount.textContent = count;
-    cdTotal.textContent = 'S/. ' + total.toFixed(2);
+    cartDot.textContent  = count;
+    cdCount.textContent  = count;
+    cdTotal.textContent  = 'S/. ' + total.toFixed(2);
 
     if (cart.length === 0) {
       cdItems.innerHTML = '<div class="cd-empty"><i class="fas fa-shopping-bag"></i><p>Tu carrito está vacío</p></div>';
@@ -319,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="cd-item">
         <div class="cd-item-info">
           <div class="cd-item-name">${item.name}</div>
-          <div class="cd-item-price">$${(item.price * item.qty).toFixed(2)}</div>
+          <div class="cd-item-price">S/. ${(item.price * item.qty).toFixed(2)}</div>
           <div class="cd-item-qty">
             <button class="qty-btn" data-action="dec" data-idx="${idx}">−</button>
             <span class="qty-n">${item.qty}</span>
@@ -332,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cdItems.querySelectorAll('.qty-btn').forEach(b => {
       b.addEventListener('click', () => {
         const i = parseInt(b.dataset.idx);
-        if (b.dataset.action === 'inc') { cart[i].qty++; }
+        if (b.dataset.action === 'inc') cart[i].qty++;
         else { cart[i].qty--; if (cart[i].qty <= 0) cart.splice(i, 1); }
         renderCart();
       });
@@ -346,10 +403,10 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ══════════════════════════════════════
      16. CARRUSEL DE RESEÑAS
   ══════════════════════════════════════ */
-  const rcs      = document.querySelectorAll('.rc');
-  const rcDotsEl = document.getElementById('rcDots');
-  const resPrev  = document.getElementById('resPrev');
-  const resNext  = document.getElementById('resNext');
+  const rcs       = document.querySelectorAll('.rc');
+  const rcDotsEl  = document.getElementById('rcDots');
+  const resPrev   = document.getElementById('resPrev');
+  const resNext   = document.getElementById('resNext');
   let rcIdx = 0, autoRC;
 
   rcs.forEach((_, i) => {
@@ -374,20 +431,19 @@ document.addEventListener('DOMContentLoaded', () => {
   resPrev?.addEventListener('click', prevRC);
   autoRC = setInterval(nextRC, 5200);
 
-  // Pausa al hover
   document.getElementById('resCarousel')?.addEventListener('mouseenter', () => clearInterval(autoRC));
   document.getElementById('resCarousel')?.addEventListener('mouseleave', () => { autoRC = setInterval(nextRC, 5200); });
 
-  // Swipe táctil
+  // Swipe táctil en reseñas
   let tx = 0;
   document.getElementById('resCarousel')?.addEventListener('touchstart', e => { tx = e.changedTouches[0].screenX; });
   document.getElementById('resCarousel')?.addEventListener('touchend', e => {
     const dx = tx - e.changedTouches[0].screenX;
-    if (Math.abs(dx) > 50) { dx > 0 ? nextRC() : prevRC(); }
+    if (Math.abs(dx) > 50) dx > 0 ? nextRC() : prevRC();
   });
 
   /* ══════════════════════════════════════
-     17. FORM TABS (Reserva)
+     17. TABS FORMULARIO
   ══════════════════════════════════════ */
   const ftabs = document.querySelectorAll('.ftab');
   ftabs.forEach(t => {
@@ -409,18 +465,19 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.textContent = 'Enviando...';
     btn.disabled = true;
     setTimeout(() => {
-      form.style.display = 'none';
+      form.style.display   = 'none';
       formOk.style.display = 'block';
     }, 1600);
   });
 
   /* ══════════════════════════════════════
-     19. TOAST NOTIFICATIONS
+     19. TOAST
   ══════════════════════════════════════ */
   const toast = document.getElementById('toast');
   let toastTimer;
 
   function showToast(msg) {
+    if (!toast) return;
     toast.textContent = msg;
     toast.classList.add('show');
     clearTimeout(toastTimer);
@@ -428,31 +485,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ══════════════════════════════════════
-     20. LAZY LOAD IMÁGENES
+     20. BARRA DE PROGRESO SCROLL
   ══════════════════════════════════════ */
-  const imgs = document.querySelectorAll('img[src]');
-  if ('IntersectionObserver' in window) {
-    const imgObs = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (en.isIntersecting) {
-          const img = en.target;
-          if (img.dataset.src) { img.src = img.dataset.src; }
-          imgObs.unobserve(img);
-        }
-      });
-    }, { rootMargin: '200px' });
-    imgs.forEach(img => imgObs.observe(img));
-  }
+  const prog = document.createElement('div');
+  prog.style.cssText = `position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#c47d6f,#c9a055);z-index:9999;width:0%;transition:width .1s;pointer-events:none`;
+  document.body.appendChild(prog);
+  window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (window.scrollY / total * 100) + '%';
+  });
 
   /* ══════════════════════════════════════
-     21. NEWSLETTER FOOTER
+     21. ANIMAR BARRAS RESEÑAS
+  ══════════════════════════════════════ */
+  const rbFills = document.querySelectorAll('.rb-fill');
+  const rbObs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        const target = en.target.style.width;
+        en.target.style.width = '0';
+        setTimeout(() => {
+          en.target.style.transition = 'width 1s ease';
+          en.target.style.width = target;
+        }, 100);
+        rbObs.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  rbFills.forEach(f => rbObs.observe(f));
+
+  /* ══════════════════════════════════════
+     22. NEWSLETTER FOOTER
   ══════════════════════════════════════ */
   const nlForm = document.querySelector('.nl-form');
-  nlForm?.addEventListener('submit', e => {
-    e.preventDefault();
-    showToast('✓ ¡Bienvenida al Club VELOUR!');
-    nlForm.querySelector('input').value = '';
-  });
   nlForm?.querySelector('button')?.addEventListener('click', () => {
     const val = nlForm.querySelector('input').value;
     if (val && val.includes('@')) {
@@ -464,59 +529,51 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ══════════════════════════════════════
-     22. BARRA DE PROGRESO AL SCROLL
-  ══════════════════════════════════════ */
-  const prog = document.createElement('div');
-  prog.id = 'progress-bar';
-  prog.style.cssText = `position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold));z-index:9999;width:0%;transition:width .1s;pointer-events:none`;
-  document.body.appendChild(prog);
-  window.addEventListener('scroll', () => {
-    const total  = document.documentElement.scrollHeight - window.innerHeight;
-    prog.style.width = (window.scrollY / total * 100) + '%';
-  });
-
-  /* ══════════════════════════════════════
-     23. ANIMAR BARRAS RESEÑAS
-  ══════════════════════════════════════ */
-  const rbFills = document.querySelectorAll('.rb-fill');
-  const rbObs = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if (en.isIntersecting) {
-        const target = en.target.style.width;
-        en.target.style.width = '0';
-        setTimeout(() => { en.target.style.transition = 'width 1s ease'; en.target.style.width = target; }, 100);
-        rbObs.unobserve(en.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  rbFills.forEach(f => rbObs.observe(f));
-
-  /* ══════════════════════════════════════
-     24. HEADER: TOP DINÁMICO CON PROMO
+     23. HEADER TOP DINÁMICO
   ══════════════════════════════════════ */
   function updateHeaderTop() {
-    if (!promoBar.classList.contains('gone')) {
+    if (promoBar && !promoBar.classList.contains('gone')) {
       header.style.top = promoBar.offsetHeight + 'px';
     }
   }
   updateHeaderTop();
   window.addEventListener('resize', updateHeaderTop);
 
+  /* ══════════════════════════════════════
+     24. DRAG-TO-SCROLL en carruseles
+  ══════════════════════════════════════ */
+  const swipeGrids = document.querySelectorAll('.swipe-grid, .gal-grid');
+
+  swipeGrids.forEach(grid => {
+    let isDown = false, startX = 0, scrollLeft = 0;
+
+    grid.addEventListener('mousedown', e => {
+      isDown = true;
+      startX = e.pageX - grid.offsetLeft;
+      scrollLeft = grid.scrollLeft;
+      grid.style.cursor = 'grabbing';
+    });
+    grid.addEventListener('mouseleave', () => { isDown = false; grid.style.cursor = 'grab'; });
+    grid.addEventListener('mouseup',    () => { isDown = false; grid.style.cursor = 'grab'; });
+    grid.addEventListener('mousemove',  e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x    = e.pageX - grid.offsetLeft;
+      const walk = (x - startX) * 1.4;
+      grid.scrollLeft = scrollLeft - walk;
+    });
+  });
+
+  /* ══════════════════════════════════════
+     25. OCULTAR SWIPE HINT AL HACER SCROLL
+  ══════════════════════════════════════ */
+  document.querySelectorAll('.swipe-grid, .gal-grid').forEach(grid => {
+    const hint = grid.previousElementSibling;
+    if (!hint || !hint.classList.contains('swipe-hint')) return;
+    grid.addEventListener('scroll', () => {
+      hint.style.opacity = grid.scrollLeft > 30 ? '0' : '1';
+    }, { passive: true });
+  });
+
   console.log('✦ VELOUR Studio — Bienvenida! ✦');
 });
-
-/* ══════════════════════════════════════
-   KEYFRAMES GLOBALES VÍA JS (soporte)
-══════════════════════════════════════ */
-const styleEl = document.createElement('style');
-styleEl.textContent = `
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-`;
-document.head.appendChild(styleEl);

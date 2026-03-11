@@ -16,17 +16,19 @@
   <div class="cursor" id="cursor"></div>
   <div class="cursor-trail" id="cursorTrail"></div>
 
-  <!-- LOADER -->
+  <!-- ══ LOADER ══ -->
   <div class="loader" id="loader">
+    <div class="loader-particles" id="loaderParticles"></div>
     <div class="loader-content">
       <div class="loader-logo">
         <span class="lv">V</span><span class="lword">ELOUR</span>
       </div>
-      <p class="loader-sub">Studio de Belleza</p>
-      <div class="loader-progress"><div class="loader-bar"></div></div>
+      <p class="loader-sub">Studio de Belleza · Cusco</p>
+      <div class="loader-progress">
+        <div class="loader-bar" id="loaderBar"></div>
+      </div>
+      <div class="loader-pct" id="loaderPct">0%</div>
     </div>
-    <div class="loader-wipe-l"></div>
-    <div class="loader-wipe-r"></div>
   </div>
 
   <!-- BARRA PROMO -->
@@ -58,7 +60,6 @@
         <a href="#galeria" class="nl">Galería</a>
         <a href="#productos" class="nl">Boutique</a>
         <a href="#resenas" class="nl">Reseñas</a>
-        <a href="#blog" class="nl">Blog</a>
       </nav>
       <div class="hd-right">
         <button class="cart-btn" id="cartBtn">
@@ -75,7 +76,6 @@
       <a href="#galeria">Galería</a>
       <a href="#productos">Boutique</a>
       <a href="#resenas">Reseñas</a>
-      <a href="#blog">Blog</a>
       <a href="#reserva" class="mob-book">Reservar Cita</a>
     </div>
   </header>
@@ -91,9 +91,9 @@
       <div class="hero-left">
         <div class="hero-pill"><span class="pill-dot"></span>Cusco, Perú · Abierto Hoy</div>
         <h1 class="hero-h1">
-          <span class="h1-line" style="--d:2s">El arte de</span>
-          <span class="h1-line italic" style="--d:2.2s">realzar</span>
-          <span class="h1-line" style="--d:2.4s">tu belleza</span>
+          <span class="h1-line" style="--d:0.2s">El arte de</span>
+          <span class="h1-line italic" style="--d:0.4s">realzar</span>
+          <span class="h1-line" style="--d:0.6s">tu belleza</span>
         </h1>
         <p class="hero-desc">Maquillaje · Peinados · Tratamientos · Nail Art · Skincare</p>
         <div class="hero-ctas">
@@ -122,7 +122,7 @@
           </div>
           <div class="hero-floating-badge">
             <i class="fas fa-award"></i>
-            <span>Top Salón<br/>Cusco 2024</span>
+            <span>Top Salón<br/>Perú 2024</span>
           </div>
         </div>
       </div>
@@ -141,40 +141,11 @@
 
   <!-- ══ RIBBON ══ -->
   <div class="ribbon">
-    <div class="ribbon-inner" id="ribbonInner">
+    <div class="ribbon-inner">
       <span>✦ Productos Premium</span><span>✦ Artistas Certificadas</span><span>✦ Ambiente Exclusivo</span><span>✦ Resultados Garantizados</span><span>✦ Técnicas Internacionales</span><span>✦ Reserva Online 24/7</span>
       <span>✦ Productos Premium</span><span>✦ Artistas Certificadas</span><span>✦ Ambiente Exclusivo</span><span>✦ Resultados Garantizados</span><span>✦ Técnicas Internacionales</span><span>✦ Reserva Online 24/7</span>
     </div>
   </div>
-
-  <!-- ══ NOSOTRAS ══ -->
-  <section class="about" id="nosotras">
-    <div class="about-wrap">
-      <div class="about-imgs">
-        <div class="ab-main"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=85&auto=format&fit=crop" alt="Equipo VELOUR Cusco"/></div>
-        <div class="ab-sec"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=85&auto=format&fit=crop" alt="Maquillaje profesional"/></div>
-        <div class="ab-badge-box"><span class="ab-big">11</span><span class="ab-sm">Años<br/>de Arte</span></div>
-        <div class="ab-award"><i class="fas fa-award"></i><span>Top Salón Colombia 2024</span></div>
-      </div>
-      <div class="about-txt">
-        <span class="eyebrow">Nuestra Historia</span>
-        <h2 class="section-title">Donde la belleza <em>se convierte en arte</em></h2>
-        <p class="ab-lead">En VELOUR Studio creemos que cada mujer lleva dentro una obra maestra esperando ser revelada. Nuestro equipo de artistas trabaja con pasión, técnica y los mejores productos del mundo para crear experiencias únicas en el corazón del Cusco.</p>
-        <p class="ab-body">Fundadas en 2014 en el histórico centro de Cusco, hemos construido un espacio donde el lujo andino se vive con calidez. Inspiradas en la riqueza cultural del Perú, cada cita es un ritual diseñado especialmente para ti.</p>
-        <div class="ab-values">
-          <div class="av"><div class="av-ic"><i class="fas fa-leaf"></i></div><div><strong>Sostenibles</strong><p>Productos eco-friendly y de comercio justo</p></div></div>
-          <div class="av"><div class="av-ic"><i class="fas fa-star"></i></div><div><strong>Exclusivos</strong><p>Técnicas internacionales de vanguardia</p></div></div>
-          <div class="av"><div class="av-ic"><i class="fas fa-heart"></i></div><div><strong>Personalizados</strong><p>Cada servicio diseñado solo para ti</p></div></div>
-        </div>
-        <div class="ab-stats">
-          <div class="abst"><span class="abst-n" data-t="800">0</span><span>Clientas</span></div>
-          <div class="abst"><span class="abst-n" data-t="15">0</span><span>Servicios</span></div>
-          <div class="abst"><span class="abst-n" data-t="8">0</span><span>Especialistas</span></div>
-          <div class="abst"><span class="abst-n" data-t="11">0</span><span>Años</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ══ SERVICIOS ══ -->
   <section class="servicios" id="servicios">
@@ -191,7 +162,8 @@
       <button class="stab" data-cat="nails">Uñas</button>
       <button class="stab" data-cat="body">Cuerpo</button>
     </div>
-    <div class="serv-grid" id="servGrid">
+    <div class="swipe-hint"><i class="fas fa-hand-point-right"></i> Desliza para ver más</div>
+    <div class="serv-grid swipe-grid" id="servGrid">
 
       <div class="sc" data-cat="makeup">
         <div class="sc-img"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=85&auto=format&fit=crop" alt="Maquillaje"/><div class="sc-overlay"></div></div>
@@ -304,7 +276,8 @@
       <h2 class="section-title light">Rituales <em>VELOUR</em></h2>
       <p class="sec-sub light">Paquetes exclusivos diseñados para una transformación total</p>
     </div>
-    <div class="rit-grid">
+    <div class="swipe-hint light"><i class="fas fa-hand-point-right"></i> Desliza para ver más</div>
+    <div class="rit-grid swipe-grid">
       <div class="rit-card">
         <div class="rit-emoji">💆‍♀️</div>
         <span class="rit-tier">Esencial</span>
@@ -367,6 +340,7 @@
       <button class="gf" data-gc="nails">Nail Art</button>
       <button class="gf" data-gc="skin">Facial</button>
     </div>
+    <div class="swipe-hint"><i class="fas fa-hand-point-right"></i> Desliza para ver más</div>
     <div class="gal-grid" id="galGrid">
       <div class="gi" data-gc="makeup"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=85&auto=format&fit=crop" alt="Maquillaje Editorial"/><div class="gi-ov"><span>Maquillaje Editorial</span><span class="gi-cat">Maquillaje</span></div></div>
       <div class="gi tall" data-gc="hair"><img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=600&q=85&auto=format&fit=crop" alt="Peinado Ondulado"/><div class="gi-ov"><span>Peinado Ondulado</span><span class="gi-cat">Cabello</span></div></div>
@@ -393,52 +367,6 @@
     </div>
   </section>
 
-  <!-- ══ EQUIPO ══ -->
-  <section class="equipo" id="equipo">
-    <div class="sec-intro">
-      <span class="eyebrow">Nuestras Artistas</span>
-      <h2 class="section-title">El <em>Equipo</em> VELOUR</h2>
-    </div>
-    <div class="eq-grid">
-      <div class="eq-card">
-        <div class="eq-img-wrap">
-          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80" alt="Valeria Rondón"/>
-          <div class="eq-hover"><p>"La belleza es el lenguaje que todos entienden."</p><div class="eq-soc"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
-        </div>
-        <h4>Valeria Rondón</h4>
-        <span>Directora Creativa & Maquilladora</span>
-        <div class="eq-tags"><span>MAC Certified</span><span>10 años</span></div>
-      </div>
-      <div class="eq-card">
-        <div class="eq-img-wrap">
-          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Camila Torres"/>
-          <div class="eq-hover"><p>"El cabello es la corona que nunca te quitas."</p><div class="eq-soc"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
-        </div>
-        <h4>Camila Torres</h4>
-        <span>Colorista & Estilista Senior</span>
-        <div class="eq-tags"><span>Wella Master</span><span>8 años</span></div>
-      </div>
-      <div class="eq-card">
-        <div class="eq-img-wrap">
-          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80" alt="Isabela Mora"/>
-          <div class="eq-hover"><p>"Cada uña es un lienzo de posibilidades."</p><div class="eq-soc"><a href="#"><i class="fab fa-instagram"></i></a></div></div>
-        </div>
-        <h4>Isabela Mora</h4>
-        <span>Nail Artist & Esteticista</span>
-        <div class="eq-tags"><span>Nail Pro Korea</span><span>6 años</span></div>
-      </div>
-      <div class="eq-card">
-        <div class="eq-img-wrap">
-          <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=400&q=80" alt="Daniela Vega"/>
-          <div class="eq-hover"><p>"La piel sana es la base de todo."</p><div class="eq-soc"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
-        </div>
-        <h4>Daniela Vega</h4>
-        <span>Especialista Skincare & Faciales</span>
-        <div class="eq-tags"><span>Dermalogica</span><span>5 años</span></div>
-      </div>
-    </div>
-  </section>
-
   <!-- ══ BOUTIQUE ══ -->
   <section class="boutique" id="productos">
     <div class="sec-intro">
@@ -453,75 +381,45 @@
       <button class="btab" data-bc="skin">Skincare</button>
       <button class="btab" data-bc="tools">Herramientas</button>
     </div>
-    <div class="prod-grid" id="prodGrid">
+    <div class="swipe-hint"><i class="fas fa-hand-point-right"></i> Desliza para ver más</div>
+    <div class="prod-grid swipe-grid" id="prodGrid">
 
       <div class="pc" data-bc="makeup">
         <div class="pc-img"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80" alt="Base"/><span class="pc-badge hot">Bestseller</span>
-          <div class="pc-actions"><button class="add-cart" data-name="Base Luminosa HD" data-price="52"><i class="fas fa-bag-shopping"></i> Agregar</button><button class="wl-btn"><i class="far fa-heart"></i></button></div></div>
-        <div class="pc-info"><span class="pc-brand">Charlotte Tilbury</span><h4>Base Luminosa HD</h4><p>Cobertura buildable, acabado satinado, 24h. SPF 20.</p><div class="pc-bot"><span class="pc-price">$52.00</span><div class="pc-stars">★★★★★ <small>(124)</small></div></div></div>
+          <div class="pc-actions"><button class="add-cart" data-name="Base Luminosa HD" data-price="195"><i class="fas fa-bag-shopping"></i> Agregar</button><button class="wl-btn"><i class="far fa-heart"></i></button></div></div>
+        <div class="pc-info"><span class="pc-brand">Charlotte Tilbury</span><h4>Base Luminosa HD</h4><p>Cobertura buildable, acabado satinado, 24h. SPF 20.</p><div class="pc-bot"><span class="pc-price">S/. 195</span><div class="pc-stars">★★★★★ <small>(124)</small></div></div></div>
       </div>
 
       <div class="pc" data-bc="skin">
         <div class="pc-img"><img src="https://images.unsplash.com/photo-1631730359585-e84e8a9a27bb?w=500&q=80" alt="Sérum"/><span class="pc-badge new-b">Nuevo</span>
-          <div class="pc-actions"><button class="add-cart" data-name="Sérum Vitamina C 20%" data-price="68"><i class="fas fa-bag-shopping"></i> Agregar</button><button class="wl-btn"><i class="far fa-heart"></i></button></div></div>
-        <div class="pc-info"><span class="pc-brand">The Ordinary Pro</span><h4>Sérum Vitamina C 20%</h4><p>Iluminador e igualador de tono. Resultados en 2 semanas.</p><div class="pc-bot"><span class="pc-price">$68.00</span><div class="pc-stars">★★★★★ <small>(89)</small></div></div></div>
+          <div class="pc-actions"><button class="add-cart" data-name="Sérum Vitamina C 20%" data-price="255"><i class="fas fa-bag-shopping"></i> Agregar</button><button class="wl-btn"><i class="far fa-heart"></i></button></div></div>
+        <div class="pc-info"><span class="pc-brand">The Ordinary Pro</span><h4>Sérum Vitamina C 20%</h4><p>Iluminador e igualador de tono. Resultados en 2 semanas.</p><div class="pc-bot"><span class="pc-price">S/. 255</span><div class="pc-stars">★★★★★ <small>(89)</small></div></div></div>
       </div>
 
       <div class="pc" data-bc="makeup">
         <div class="pc-img"><img src="https://images.unsplash.com/photo-1583241475880-083f84372725?w=500&q=80" alt="Paleta"/>
-          <div class="pc-actions"><button class="add-cart" data-name="Paleta Sombras Rose Dust" data-price="78"><i class="fas fa-bag-shopping"></i> Agregar</button><button class="wl-btn"><i class="far fa-heart"></i></button></div></div>
-        <div class="pc-info"><span class="pc-brand">NARS Cosmetics</span><h4>Paleta Sombras Rose Dust</h4><p>18 tonos altamente pigmentados. Mix mate y brillos.</p><div class="pc-bot"><span class="pc-price">$78.00</span><div class="pc-stars">★★★★☆ <small>(67)</small></div></div></div>
+          <div class="pc-actions"><button class="add-cart" data-name="Paleta Sombras Rose Dust" data-price="290"><i class="fas fa-bag-shopping"></i> Agregar</button><button class="wl-btn"><i class="far fa-heart"></i></button></div></div>
+        <div class="pc-info"><span class="pc-brand">NARS Cosmetics</span><h4>Paleta Sombras Rose Dust</h4><p>18 tonos altamente pigmentados. Mix mate y brillos.</p><div class="pc-bot"><span class="pc-price">S/. 290</span><div class="pc-stars">★★★★☆ <small>(67)</small></div></div></div>
       </div>
 
       <div class="pc" data-bc="hair">
         <div class="pc-img"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Aceite"/><span class="pc-badge sale-b">-30%</span>
-          <div class="pc-actions"><button class="add-cart" data-name="Aceite de Argán Oro" data-price="44"><i class="fas fa-bag-shopping"></i> Agregar</button><button class="wl-btn"><i class="far fa-heart"></i></button></div></div>
-        <div class="pc-info"><span class="pc-brand">Moroccanoil</span><h4>Aceite de Argán Oro</h4><p>Nutrición y brillo intenso. Sin sulfatos. Para todo tipo.</p><div class="pc-bot"><span class="pc-price">$44.00 <small class="op">$62</small></span><div class="pc-stars">★★★★★ <small>(201)</small></div></div></div>
+          <div class="pc-actions"><button class="add-cart" data-name="Aceite de Argán Oro" data-price="165"><i class="fas fa-bag-shopping"></i> Agregar</button><button class="wl-btn"><i class="far fa-heart"></i></button></div></div>
+        <div class="pc-info"><span class="pc-brand">Moroccanoil</span><h4>Aceite de Argán Oro</h4><p>Nutrición y brillo intenso. Sin sulfatos. Para todo tipo.</p><div class="pc-bot"><span class="pc-price">S/. 165 <small class="op">S/. 232</small></span><div class="pc-stars">★★★★★ <small>(201)</small></div></div></div>
       </div>
 
       <div class="pc" data-bc="skin">
         <div class="pc-img"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&q=80" alt="Mascarilla"/>
-          <div class="pc-actions"><button class="add-cart" data-name="Mascarilla Dorada Anti-age" data-price="38"><i class="fas fa-bag-shopping"></i> Agregar</button><button class="wl-btn"><i class="far fa-heart"></i></button></div></div>
-        <div class="pc-info"><span class="pc-brand">La Mer</span><h4>Mascarilla Dorada Anti-age</h4><p>Oro coloidal y péptidos para piel luminosa y firme.</p><div class="pc-bot"><span class="pc-price">$38.00</span><div class="pc-stars">★★★★★ <small>(58)</small></div></div></div>
+          <div class="pc-actions"><button class="add-cart" data-name="Mascarilla Dorada Anti-age" data-price="142"><i class="fas fa-bag-shopping"></i> Agregar</button><button class="wl-btn"><i class="far fa-heart"></i></button></div></div>
+        <div class="pc-info"><span class="pc-brand">La Mer</span><h4>Mascarilla Dorada Anti-age</h4><p>Oro coloidal y péptidos para piel luminosa y firme.</p><div class="pc-bot"><span class="pc-price">S/. 142</span><div class="pc-stars">★★★★★ <small>(58)</small></div></div></div>
       </div>
 
       <div class="pc" data-bc="tools">
         <div class="pc-img"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=500&q=80" alt="Pinceles"/><span class="pc-badge hot">Pro Kit</span>
-          <div class="pc-actions"><button class="add-cart" data-name="Set Pinceles Pro 12pcs" data-price="95"><i class="fas fa-bag-shopping"></i> Agregar</button><button class="wl-btn"><i class="far fa-heart"></i></button></div></div>
-        <div class="pc-info"><span class="pc-brand">Sigma Beauty</span><h4>Set Pinceles Pro 12 piezas</h4><p>Fibras sintéticas premium, mangos metálicos. Kit profesional.</p><div class="pc-bot"><span class="pc-price">$95.00</span><div class="pc-stars">★★★★★ <small>(143)</small></div></div></div>
+          <div class="pc-actions"><button class="add-cart" data-name="Set Pinceles Pro 12pcs" data-price="355"><i class="fas fa-bag-shopping"></i> Agregar</button><button class="wl-btn"><i class="far fa-heart"></i></button></div></div>
+        <div class="pc-info"><span class="pc-brand">Sigma Beauty</span><h4>Set Pinceles Pro 12 piezas</h4><p>Fibras sintéticas premium, mangos metálicos. Kit profesional.</p><div class="pc-bot"><span class="pc-price">S/. 355</span><div class="pc-stars">★★★★★ <small>(143)</small></div></div></div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- ══ ANTES / DESPUÉS ══ -->
-  <section class="before-after" id="resultados">
-    <div class="sec-intro centered">
-      <span class="eyebrow">Resultados Reales</span>
-      <h2 class="section-title">Antes & <em>Después</em></h2>
-    </div>
-    <div class="ba-grid">
-      <div class="ba-card">
-        <div class="ba-imgs">
-          <div class="ba-b"><img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400&q=80" alt="Antes"/><span class="ba-lbl">Antes</span></div>
-          <div class="ba-a"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80" alt="Después"/><span class="ba-lbl after">Después</span></div>
-        </div>
-        <p>Maquillaje Nupcial Completo</p>
-      </div>
-      <div class="ba-card">
-        <div class="ba-imgs">
-          <div class="ba-b"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&q=80" alt="Antes"/><span class="ba-lbl">Antes</span></div>
-          <div class="ba-a"><img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=400&q=80" alt="Después"/><span class="ba-lbl after">Después</span></div>
-        </div>
-        <p>Balayage + Tratamiento</p>
-      </div>
-      <div class="ba-card">
-        <div class="ba-imgs">
-          <div class="ba-b"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&q=80" alt="Antes"/><span class="ba-lbl">Antes</span></div>
-          <div class="ba-a"><img src="https://images.unsplash.com/photo-1503236823255-94609f598e71?w=400&q=80" alt="Después"/><span class="ba-lbl after">Después</span></div>
-        </div>
-        <p>Facial Lifting Premium</p>
-      </div>
     </div>
   </section>
 
@@ -552,32 +450,6 @@
     <div class="res-ctrl"><button class="rc-nav" id="resPrev"><i class="fas fa-chevron-left"></i></button><div class="rc-dots" id="rcDots"></div><button class="rc-nav" id="resNext"><i class="fas fa-chevron-right"></i></button></div>
   </section>
 
-  <!-- ══ BLOG ══ -->
-  <section class="blog" id="blog">
-    <div class="sec-intro">
-      <span class="eyebrow">Tips & Tendencias</span>
-      <h2 class="section-title">Blog de <em>Belleza</em></h2>
-    </div>
-    <div class="blog-grid">
-      <div class="bc featured-bc">
-        <div class="bc-img"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80" alt=""/><span class="bc-cat">Maquillaje</span></div>
-        <div class="bc-body"><span class="bc-date"><i class="fas fa-calendar"></i> 15 Nov 2024</span><h3>Las 5 tendencias de maquillaje que dominarán 2025</h3><p>Desde el "clean girl makeup" hasta el bold liner de colores, te contamos qué looks serán tendencia el próximo año.</p><a href="#" class="bc-link">Leer más <i class="fas fa-arrow-right"></i></a></div>
-      </div>
-      <div class="bc">
-        <div class="bc-img"><img src="https://images.unsplash.com/photo-1590330297626-d7aff25a0431?w=600&q=80" alt=""/><span class="bc-cat">Cabello</span></div>
-        <div class="bc-body"><span class="bc-date"><i class="fas fa-calendar"></i> 8 Nov 2024</span><h3>Cómo cuidar tu color en casa y que dure el doble</h3><a href="#" class="bc-link">Leer más <i class="fas fa-arrow-right"></i></a></div>
-      </div>
-      <div class="bc">
-        <div class="bc-img"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt=""/><span class="bc-cat">Skincare</span></div>
-        <div class="bc-body"><span class="bc-date"><i class="fas fa-calendar"></i> 1 Nov 2024</span><h3>Rutina de 5 pasos para piel perfecta en invierno</h3><a href="#" class="bc-link">Leer más <i class="fas fa-arrow-right"></i></a></div>
-      </div>
-      <div class="bc">
-        <div class="bc-img"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80" alt=""/><span class="bc-cat">Uñas</span></div>
-        <div class="bc-body"><span class="bc-date"><i class="fas fa-calendar"></i> 25 Oct 2024</span><h3>Nail art para principiantes: 7 diseños fáciles</h3><a href="#" class="bc-link">Leer más <i class="fas fa-arrow-right"></i></a></div>
-      </div>
-    </div>
-  </section>
-
   <!-- ══ RESERVA ══ -->
   <section class="reserva" id="reserva">
     <div class="res-wrap">
@@ -586,20 +458,17 @@
         <h2 class="section-title">Reserva tu <em>cita</em></h2>
         <p>Nuestro equipo en Cusco confirmará tu cita en menos de 2 horas. También puedes escribirnos directamente por WhatsApp.</p>
         <div class="ci-list">
-          <a href="tel:+51984123456" class="ci"><div class="ci-ico"><i class="fas fa-phone"></i></div><div><span>Llámanos</span><strong>+51 000 000 000</strong></div></a>
-          <a href="https://wa.me/51000000000" class="ci wa-ci"><div class="ci-ico wa"><i class="fab fa-whatsapp"></i></div><div><span>WhatsApp</span><strong>+51 000 000 000</strong></div></a>
-          <div class="ci"><div class="ci-ico"><i class="fas fa-map-marker-alt"></i></div><div><span>Ubicación</span><strong>Calle Sin Numero, Cusco, Perú</strong></div></div>
+          <a href="tel:+51900000000" class="ci"><div class="ci-ico"><i class="fas fa-phone"></i></div><div><span>Llámanos</span><strong>+51 900 000 000</strong></div></a>
+          <a href="https://wa.me/51900000000" class="ci wa-ci"><div class="ci-ico wa"><i class="fab fa-whatsapp"></i></div><div><span>WhatsApp</span><strong>+51 900 000 000</strong></div></a>
+          <div class="ci"><div class="ci-ico"><i class="fas fa-map-marker-alt"></i></div><div><span>Ubicación</span><strong>Calle Plateros 334, Cusco, Perú</strong></div></div>
           <div class="ci"><div class="ci-ico"><i class="fas fa-clock"></i></div><div><span>Horarios</span><strong>Lun–Sáb 9am–8pm · Dom 10am–5pm</strong></div></div>
-          <div class="ci"><div class="ci-ico"><i class="fas fa-envelope"></i></div><div><span>Correo</span><strong>hola@velour.pe</strong></div></div>
         </div>
         <div class="res-soc">
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-tiktok"></i></a>
           <a href="#"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-pinterest-p"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
-        <!-- MAPA REAL — OpenStreetMap · Plaza de Armas Cusco -->
         <div class="map-box">
           <iframe
             src="https://www.openstreetmap.org/export/embed.html?bbox=-71.9800%2C-13.5200%2C-71.9600%2C-13.5050&amp;layer=mapnik&amp;marker=-13.5125%2C-71.9765"
@@ -620,7 +489,7 @@
         <form class="rform" id="reservaForm">
           <div class="fg-row">
             <div class="fg"><label>Nombre completo *</label><input type="text" placeholder="Tu nombre" required/></div>
-            <div class="fg"><label>Teléfono / WhatsApp *</label><input type="tel" placeholder="+51 000 000 000" required/></div>
+            <div class="fg"><label>Teléfono / WhatsApp *</label><input type="tel" placeholder="+51 900 000 000" required/></div>
           </div>
           <div class="fg"><label>Correo electrónico</label><input type="email" placeholder="tu@correo.com"/></div>
           <div class="fg-row">
@@ -632,7 +501,7 @@
                 <optgroup label="Cabello"><option>Peinados & Styling</option><option>Color & Colorimetría</option><option>Keratina & Alisado</option></optgroup>
                 <optgroup label="Skincare"><option>Facial Lifting Premium</option><option>Diseño de Cejas & Laminado</option></optgroup>
                 <optgroup label="Uñas & Cuerpo"><option>Nail Art & Manicure</option><option>Masaje & Drenaje</option></optgroup>
-                <optgroup label="Rituales"><option>Ritual Luminosa ($155)</option><option>Ritual Sublime ($290)</option><option>Ritual Novia ($340)</option></optgroup>
+                <optgroup label="Rituales"><option>Ritual Luminosa (S/. 220)</option><option>Ritual Sublime (S/. 390)</option><option>Ritual Novia (S/. 460)</option></optgroup>
               </select>
             </div>
             <div class="fg"><label>Fecha preferida *</label><input type="date" required/></div>
@@ -661,7 +530,7 @@
     <div class="cd-panel">
       <div class="cd-head"><h3>Boutique <span id="cdCount">0</span></h3><button id="cdClose"><i class="fas fa-times"></i></button></div>
       <div class="cd-items" id="cdItems"><div class="cd-empty"><i class="fas fa-shopping-bag"></i><p>Tu carrito está vacío</p></div></div>
-      <div class="cd-foot"><div class="cd-tot"><span>Subtotal</span><strong id="cdTotal">$0.00</strong></div><button class="btn-checkout">Finalizar Compra <i class="fas fa-arrow-right"></i></button><button class="btn-clear" id="btnClear">Vaciar carrito</button></div>
+      <div class="cd-foot"><div class="cd-tot"><span>Subtotal</span><strong id="cdTotal">S/. 0.00</strong></div><button class="btn-checkout">Finalizar Compra <i class="fas fa-arrow-right"></i></button><button class="btn-clear" id="btnClear">Vaciar carrito</button></div>
     </div>
   </div>
 
@@ -670,19 +539,23 @@
     <div class="footer-inner">
       <div class="ft-brand">
         <div class="ft-logo"><span class="logo-v">V</span>ELOUR<span class="logo-studio">Studio</span></div>
-        <p>Donde cada mujer descubre que la belleza no tiene límites. Calle Sin Numero, Cusco, Perú.</p>
-        <div class="ft-soc"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-tiktok"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-pinterest-p"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
+        <p>Donde cada mujer descubre que la belleza no tiene límites. Calle Plateros 334, Cusco, Perú.</p>
+        <div class="ft-soc">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-pinterest-p"></i></a>
+        </div>
       </div>
-      <div class="ft-col"><h5>Servicios</h5><a href="#">Maquillaje Profesional</a><a href="#">Peinados & Styling</a><a href="#">Color & Colorimetría</a><a href="#">Keratina & Alisado</a><a href="#">Facial Lifting</a><a href="#">Nail Art</a><a href="#">Masajes</a></div>
-      <div class="ft-col"><h5>Rituales & Más</h5><a href="#">Ritual Luminosa</a><a href="#">Ritual Sublime</a><a href="#">Ritual Novia</a><a href="#">Boutique Online</a><a href="#">Blog de Belleza</a><a href="#">Gift Cards</a></div>
-      <div class="ft-col"><h5>Empresa</h5><a href="#">Sobre Nosotras</a><a href="#">Nuestro Equipo</a><a href="#">Franquicia</a><a href="#">Trabaja con Nosotras</a><a href="#">Prensa & Media</a></div>
+      <div class="ft-col"><h5>Servicios</h5><a href="#">Maquillaje Profesional</a><a href="#">Peinados & Styling</a><a href="#">Color & Colorimetría</a><a href="#">Facial Lifting</a><a href="#">Nail Art</a><a href="#">Masajes</a></div>
+      <div class="ft-col"><h5>Rituales & Más</h5><a href="#">Ritual Luminosa</a><a href="#">Ritual Sublime</a><a href="#">Ritual Novia</a><a href="#">Boutique Online</a><a href="#">Gift Cards</a></div>
       <div class="ft-nl"><h5>Club VELOUR</h5><p>Tips de belleza, tendencias y descuentos exclusivos.</p><div class="nl-form"><input type="email" placeholder="tu@correo.com"/><button>Unirme</button></div><div class="nl-perks"><span><i class="fas fa-gift"></i> 15% off primera compra</span><span><i class="fas fa-star"></i> Acceso anticipado</span></div></div>
     </div>
-    <div class="ft-bottom"><span>© 2025 VELOUR Studio · Cusco, Perú · Todos los derechos reservados</span><div class="ft-links"><a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Cookies</a></div></div>
+    <div class="ft-bottom"><span>© 2025 VELOUR Studio · Cusco, Perú · Todos los derechos reservados</span><div class="ft-links"><a href="#">Privacidad</a><a href="#">Términos</a></div></div>
   </footer>
 
   <!-- WHATSAPP FLOTANTE -->
-  <a href="https://wa.me/51000000000" class="wa-fab" target="_blank">
+  <a href="https://wa.me/51900000000" class="wa-fab" target="_blank">
     <i class="fab fa-whatsapp"></i>
     <div class="wa-ring"></div>
   </a>
